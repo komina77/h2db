@@ -8,8 +8,8 @@ MySQLとPostgreSQLの初期データのインストールが完了するまで�
 
 
 ## サンプルデータ
-https://dev.mysql.com/doc/index-other.html
-https://dev.mysql.com/doc/world-setup/en/
+- https://dev.mysql.com/doc/index-other.html
+- https://dev.mysql.com/doc/world-setup/en/
 
 ## PostgreSQLのクエリログの出力先
 LinkedTables\postgres1\db\log\postgresql-*.log
