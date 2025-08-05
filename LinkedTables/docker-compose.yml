@@ -1,0 +1,39 @@
+services:
+  mysql-1:
+    image: mysql:9.4
+    container_name: mysql-container_1
+    environment:
+      MYSQL_ROOT_PASSWORD: my-secret-pw
+      MYSQL_DATABASE: world
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_CHARACTER_SET_SERVER: utf8mb4
+      MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+    volumes:
+      - ./mysql1/db:/var/lib/mysql
+      - ./mysql1/init:/docker-entrypoint-initdb.d
+    command: --general-log=1 --general-log-file=/var/lib/mysql/query.log
+
+  postgres-1:
+    image: postgres:15.13
+    container_name: postgres-container_1
+    environment:
+      POSTGRES_DB: world
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - ./postgres1/db:/var/lib/postgresql/data
+      - ./postgres1/init:/docker-entrypoint-initdb.d
+
+
+  play:
+    image: komina77/play:1.7.1-bullseye
+    container_name: play
+    tty: true
+    volumes:
+      - ./work:/work
+    working_dir: /work
+    ports:
+      - 8082:8082
+      - 9092:9092
+    command: [ "sh", "-c", "/work/h2db.sh" ]
